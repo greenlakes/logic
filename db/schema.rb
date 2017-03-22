@@ -10,29 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322102848) do
+ActiveRecord::Schema.define(version: 20170322215748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "body"
+    t.boolean  "correct"
+    t.integer  "question_id"
+    t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
   end
 
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
   end
 
   create_table "questions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text     "body"
+    t.integer  "number"
+    t.integer  "quiz_id"
+    t.index ["quiz_id"], name: "index_questions_on_quiz_id", using: :btree
   end
 
   create_table "quizzes", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "title"
+    t.integer  "category_id"
+    t.index ["category_id"], name: "index_quizzes_on_category_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,4 +65,7 @@ ActiveRecord::Schema.define(version: 20170322102848) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "answers", "questions"
+  add_foreign_key "questions", "quizzes"
+  add_foreign_key "quizzes", "categories"
 end

@@ -15,6 +15,7 @@
   development:
         adapter: postgresql
         encoding: unicode
+        template: template0
         database: quiz_development
         pool: 5
         username: ubuntu
