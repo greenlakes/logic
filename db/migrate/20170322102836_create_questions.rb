@@ -3,7 +3,7 @@ class CreateQuestions < ActiveRecord::Migration[5.0]
     create_table :questions do |t|
       t.text :body
       t.integer :number
-      t.reference :quiz, foreign_key: true
+      t.references :quiz, foreign_key: true
       t.timestamps
     end
   end
