@@ -5,4 +5,9 @@ class CreateCategories < ActiveRecord::Migration[5.0]
       t.timestamps
     end
   end
+  
+  def change
+    add_column :categories, :name, :string
+  end
+  
 end

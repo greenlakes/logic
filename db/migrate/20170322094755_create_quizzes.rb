@@ -5,4 +5,10 @@ class CreateQuizzes < ActiveRecord::Migration[5.0]
       t.timestamps
     end
   end
+  
+  def change
+    add_column :quizzes, :title, :string
+    add_reference :quizzes, :category, foreign_key: true
+  end
+  
 end
