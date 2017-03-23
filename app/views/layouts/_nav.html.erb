@@ -21,6 +21,7 @@
       <ul class="nav navbar-nav navbar-right">
        
         <li><%= link_to "View Quzzеs", "#" %></li>
+         <li><%= link_to 'Create a new category',  new_categories_path %></li>
         
        <% if !current_user %>
        
@@ -34,7 +35,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Signed as <%= current_user.first_name %> <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">My Dashboard</a></li>
-            <li><%= link_to 'Create a new quiz', "#" %></li>
+           
             <li><%= link_to 'Edit my profile',  edit_user_registration_path %></li>
             <li role="separator" class="divider"></li>
             <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
