@@ -26,7 +26,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
 
-    respond_to do |format|
+    
       if @category.save
         redirect_to @category, notice: 'Category was successfully created.' 
         
@@ -34,13 +34,13 @@ class CategoriesController < ApplicationController
         render :new 
         
       end
-    end
+    
   end
 
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
-    respond_to do |format|
+    
       if @category.update(category_params)
         redirect_to @category, notice: 'Category was successfully updated.' 
         
@@ -48,17 +48,17 @@ class CategoriesController < ApplicationController
         render :edit 
 
       end
-    end
+    
   end
 
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
     @category.destroy
-    respond_to do |format|
+   
       redirect_to categories_url, notice: 'Category was successfully destroyed.'
       
-    end
+    
   end
 
   private

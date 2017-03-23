@@ -26,7 +26,7 @@ class QuizzesController < ApplicationController
   def create
     @quiz = Quiz.new(quiz_params)
 
-    respond_to do |format|
+    
       if @quiz.save
          redirect_to @quiz, notice: 'Quiz was successfully created.'
         
@@ -34,13 +34,13 @@ class QuizzesController < ApplicationController
        render :new
         
       end
-    end
+    
   end
 
   # PATCH/PUT /quizzes/1
   # PATCH/PUT /quizzes/1.json
   def update
-    respond_to do |format|
+   
       if @quiz.update(quiz_params)
         redirect_to @quiz, notice: 'Quiz was successfully updated.'
         
@@ -48,17 +48,17 @@ class QuizzesController < ApplicationController
         render :edit
       
       end
-    end
+    
   end
 
   # DELETE /quizzes/1
   # DELETE /quizzes/1.json
   def destroy
     @quiz.destroy
-    respond_to do |format|
+    
       redirect_to quizzes_url, notice: 'Quiz was successfully destroyed.' 
       
-    end
+    
   end
 
   private
