@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
-before_filter :verify_is_admin
+  
+  before_action :verify_is_admin
  
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
@@ -75,7 +76,4 @@ before_filter :verify_is_admin
       params.require(:category).permit(:name)
     end
     
-    def verify_is_admin
-  (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
-end
 end

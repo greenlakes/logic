@@ -1,5 +1,7 @@
 class QuizzesController < ApplicationController
-  before_filter :verify_is_admin
+  
+  before_action :verify_is_admin
+  
   before_action :set_quiz, only: [:show, :edit, :update, :destroy]
 
   # GET /quizzes
@@ -72,7 +74,5 @@ class QuizzesController < ApplicationController
     def quiz_params
       params.require(:quiz).permit(:title, :category_id, :published)
     end
-  def verify_is_admin
-  (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
-  end
+
 end
