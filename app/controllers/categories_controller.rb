@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   
+  before_action :verify_is_admin
  
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
@@ -74,4 +75,5 @@ class CategoriesController < ApplicationController
     def category_params
       params.require(:category).permit(:name)
     end
+    
 end

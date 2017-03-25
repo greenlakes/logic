@@ -1,4 +1,7 @@
 class QuizzesController < ApplicationController
+  
+  before_action :verify_is_admin
+  
   before_action :set_quiz, only: [:show, :edit, :update, :destroy]
 
   # GET /quizzes
@@ -71,4 +74,5 @@ class QuizzesController < ApplicationController
     def quiz_params
       params.require(:quiz).permit(:title, :category_id, :published)
     end
+
 end
