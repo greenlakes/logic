@@ -2,38 +2,36 @@ class QuizzesController < ApplicationController
   
   before_action :verify_is_admin
   
-  before_action :set_quiz, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   # GET /quizzes
   # GET /quizzes.json
   def index
-    @quizzes = Quiz.all
+    @questions = Question.all
   end
 
   # GET /quizzes/1
   # GET /quizzes/1.json
   def show
-    @quiz = Quiz.find(params[:id])
   end
 
   # GET /quizzes/new
   def new
-    @quiz = Quiz.new
+    @question = Question.new
   end
 
   # GET /quizzes/1/edit
   def edit
-     @quiz = Quiz.find(params[:id])
   end
 
   # POST /quizzes
   # POST /quizzes.json
   def create
-    @quiz = Quiz.new(quiz_params)
+    @question = Question.new(quiz_params)
 
     
-      if @quiz.save
-         redirect_to @quiz, notice: 'Quiz was successfully created.'
+      if @question.save
+         redirect_to @question, notice: 'Question was successfully created.'
         
       else
        render :new
@@ -46,8 +44,8 @@ class QuizzesController < ApplicationController
   # PATCH/PUT /quizzes/1.json
   def update
    
-      if @quiz.update(quiz_params)
-        redirect_to @quiz, notice: 'Quiz was successfully updated.'
+      if @question.update(quiz_params)
+        redirect_to @question, notice: 'Question was successfully updated.'
         
       else
         render :edit
@@ -59,25 +57,22 @@ class QuizzesController < ApplicationController
   # DELETE /quizzes/1
   # DELETE /quizzes/1.json
   def destroy
-    @quiz.destroy
+    @question.destroy
     
-      redirect_to quizzes_url, notice: 'Quiz was successfully destroyed.' 
+      redirect_to questions_url, notice: 'Question was successfully destroyed.' 
       
     
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_quiz
-      @quiz = Quiz.find(params[:id])
+    def set_question
+      @question = Question.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def quiz_params
-      params.require(:quiz).permit(
-      :title, :category_id, :published, 
-      questions_attributes: [:id, :_destroy, :number, :body]
-      )
+    def question_params
+      params.require(:question).permit(:body, :quiz_id, answers_attributes: [:id, :body, :_destroy])
     end
 
 end

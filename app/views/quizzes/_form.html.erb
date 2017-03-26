@@ -1,12 +1,22 @@
 <%= simple_form_for(@quiz) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.association :category %>
-<%= f.input :published %>
-  </div>
+<div class="form-inputs">
+  <%= f.input :title %>
+  <%= f.association :category %>
+  <%= f.input :published %>
+</div>
 
+<h1>Questions</h1>
+
+  <div id="questions">
+    <%= f.simple_fields_for :questions do |question| %>
+      <%= render 'question_fields', f: question %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'add question', f, :questions %>
+    </div>
+  </div>
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
