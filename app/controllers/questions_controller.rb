@@ -13,6 +13,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1
   # GET /quizzes/1.json
   def show
+     @question = Question.find(params[:id])
   end
 
   # GET /quizzes/new
@@ -22,12 +23,13 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1/edit
   def edit
+     @question = Question.find(params[:id])
   end
 
   # POST /quizzes
   # POST /quizzes.json
   def create
-    @question = Question.new(quiz_params)
+    @question = Question.new(question_params)
 
     
       if @question.save
@@ -44,7 +46,7 @@ class QuizzesController < ApplicationController
   # PATCH/PUT /quizzes/1.json
   def update
    
-      if @question.update(quiz_params)
+      if @question.update(question_params)
         redirect_to @question, notice: 'Question was successfully updated.'
         
       else
@@ -72,7 +74,10 @@ class QuizzesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:body, :quiz_id, answers_attributes: [:id, :body, :_destroy])
+      params.require(:question).permit(
+      :body, :quiz_id, 
+      answers_attributes: [:id, :_destroy, :body]
+      )
     end
 
 end
