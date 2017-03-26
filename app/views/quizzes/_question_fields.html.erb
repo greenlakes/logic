@@ -3,3 +3,12 @@
   <%= f.input :body %>
   <%= link_to_remove_association "remove question", f %>
 </div>
+
+<div class="fields">
+    <%= f.simple_fields_for :answers do |answer| %>
+      <%= render 'answer_fields', f: answer %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'add answer', f, :answers %>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-class QuizzesController < ApplicationController
+class QuestionsController < ApplicationController
   
   before_action :verify_is_admin
   
