@@ -1,8 +1,6 @@
-class QuizzesController < ApplicationController
-  
-  before_action :verify_is_admin
- 
-  before_action :set_quiz, only: [:show, :edit, :update, :destroy]
+class PlayController < ApplicationController
+
+    before_action :set_quiz, only: [:show, :edit, :update, :destroy]
 
   # GET /quizzes
   # GET /quizzes.json
