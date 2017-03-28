@@ -1,0 +1,43 @@
+<%= simple_form_for @quiz, url: plays_check_results_path do |f| %>
+
+<%= hidden_field_tag 'quiz[id]', @quiz.id %>
+
+<ol id="questions" >
+	<% @quiz.questions.each do |question| %>
+	<li class="quiz-question form-group" data-content="<%= question.body.parameterize %>">
+		<h3>
+			<%= question.body %>
+		</h3>
+		<div class="list-group">
+			<% question.answers.each do |answer| %>
+			<label class="list-group-item">
+				<div class="media">
+					<div class="media-left">
+						<span class="media-object">
+							<%= radio_button "quiz[questions]", question.id, answer.id, checked: is_checked?(question, answer.id), class: 'radio-answer', data: { content: answer.body.parameterize } %>
+						</span>
+					</div>
+					<div class="media-body lead">
+						<%= answer.body %>
+					</div>
+				</div>
+			</label>
+			<% end %>
+		</div>
+	</li>
+	<% end %>
+</ol>
+
+<div class="row">
+	<div class="col-md-4 col-md-offset-4">
+	
+		<p>
+			
+			 <%= f.submit "Submit", class: 'btn btn-success btn-lg btn-block' %>
+	
+		</p>
+		
+	</div>
+</div>
+
+<% end %>
