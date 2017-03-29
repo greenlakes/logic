@@ -1,4 +1,4 @@
-<%= simple_form_for @quiz, url: plays_check_results_path do |f| %>
+<%= simple_form_for @quiz, url: plays_check_results_path, method: :post do |f| %>
 
 <%= hidden_field_tag 'quiz[id]', @quiz.id %>
 
@@ -14,7 +14,7 @@
 				<div class="media">
 					<div class="media-left">
 						<span class="media-object">
-							<%= radio_button "quiz[questions]", question.id, answer.id, checked: is_checked?(question, answer.id), class: 'radio-answer', data: { content: answer.body.parameterize } %>
+							<%= radio_button "quiz[questions]", question.id, answer.id, class: 'radio-answer', data: { content: answer.body.parameterize } %>
 						</span>
 					</div>
 					<div class="media-body lead">
