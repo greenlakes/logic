@@ -25,8 +25,7 @@ class PlaysController < ApplicationController
       # Вот тут нужно создавать Play для текущего пользователя
       # с записью количества правильных ответов – current_user.plays.create(...)
 
-
-    @play = current_user.plays.create(quiz_id: params[:quiz][:id].to_i, points: count.to_i)
+    @play = current_user.plays.create(quiz_id: quiz.id, points: count)
     
     end
     

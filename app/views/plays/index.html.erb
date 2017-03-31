@@ -11,7 +11,8 @@
   </thead>
 
   <tbody>
-    <% @quizzes.each do |quiz| if quiz.published? %>
+
+    <% @quizzes.where(published: true).each do |quiz| %>
       <tr>
         <td><%= quiz.title %></td>
         <td><%= quiz.category.name %></td>
@@ -19,7 +20,6 @@
         <td><%= link_to 'Play', play_path(quiz), class: 'btn btn-success btn-block' %></td>
         
       </tr>
-    <% end %>
     <% end %>
      
   </tbody>
