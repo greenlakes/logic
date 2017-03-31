@@ -26,10 +26,12 @@
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  template: template0
   database: database: quiz_test
 
 production:
   <<: *default
+  template: template0
   database: quiz_production
   username: ubuntu
   password: <%= ENV['QUIZ_DATABASE_PASSWORD'] %>
